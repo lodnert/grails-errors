@@ -7,10 +7,13 @@ generateErrorsArtifacts = { Map argsMap = [:] ->
     def type = "Controller"
     if (!argsMap["params"]) {
         argsMap["params"] = []
-        argsMap["params"] << grailsConsole.userInput("Specify a fully qualified class name for your errors Controller (e.g. com.xyz.ErrorsController):")
+        argsMap["params"] << grailsConsole.userInput("Specify a fully qualified class name for your errors Controller (e.g. com.xyz.ErrorsController), press Enter to skip:")
     }
 
     for (name in argsMap["params"]) {
+        if (!name) {
+            return
+        }
         name = purgeRedundantArtifactSuffix(name, type)
         createArtifact(name: name, suffix: type, type: "ErrorsController", path: "grails-app/controllers")
         createUnitTest(name: name, suffix: type)
@@ -44,7 +47,7 @@ generateErrorsArtifacts = { Map argsMap = [:] ->
 	
 	if (added) {
 	    mappingsFile.text = writer.toString()
-	    grailsConsole.addStatus "Modified grails-app/conf/UrlMappings.groovy, please check mappings"
+	    grailsConsole.addStatus "Modified grails-app/conf/UrlMappings.groovy, please check mappings!"
 	}
 	else {
 	    grailsConsole.warn "UrlMappings.groovy not modified, please add the following to it: ${mappings}"
