@@ -1,2 +1,1 @@
-includeTargets << new File("$errorsPluginDir/scripts/_GenerateErrorsArtifacts.groovy")
-generateErrorsArtifacts << [:]
+grailsConsole.addStatus "Errors plugin installed, please run 'grails generate-errors-controller'"

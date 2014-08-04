@@ -29,12 +29,11 @@ grails.project.dependency.resolution = {
     }
 
     plugins {
-        build(":tomcat:7.0.42",
-              ":release:3.0.1") {
+        build(":release:3.0.1") {
             export = false
         }
     }
 }
 
-//grails.project.repos.default = "quirkRepo"
+grails.project.repos.default = "quirkRepo"
 grails.release.scm.enabled = false
